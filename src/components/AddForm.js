@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/button";
 import { Input } from "@chakra-ui/input";
 import { useToast } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import {
   ListItem,
@@ -18,13 +18,14 @@ import {
 } from "@chakra-ui/react";
 import { React } from "react";
 import { Link } from "react-router-dom";
+import Persona from "./dbpersona";
+import { db } from "../firebaseConfig";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 
-/* var us = localStorage.getItem("todos"); */
 var us = localStorage.getItem("usuario");
 console.log(us);
 
 export function AddForm({ addTodo }) {
-
   const backgroundColor = useColorModeValue("gray.300", "gray.700");
   const backgroundColor2 = useColorModeValue("blue.300", "blue.800");
 
@@ -32,8 +33,6 @@ export function AddForm({ addTodo }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    /* console.log("123"); */
-    console.log("hola");
 
     if (!content && !content2 & !content3 & !content4) {
       toast({
@@ -62,8 +61,24 @@ export function AddForm({ addTodo }) {
         checked8,
       ],
     };
-    console.log(todo);
+
+    let todo2 = [
+      content,
+      content2,
+      content3,
+      content4,
+      checked,
+      checked2,
+      checked3,
+      checked4,
+      checked5,
+      checked6,
+      checked7,
+      checked8,
+    ];
+
     addTodo(todo);
+    localStorage.setItem("formu", todo2);
     setContent("");
     setContent2("");
     setContent3("");
@@ -118,16 +133,46 @@ export function AddForm({ addTodo }) {
     console.log("valor c: ", c1);
   }
 
+  const crearRegistro = async () => {
+    const documentos = [];
+
+    const formulario = localStorage.getItem("formu").split(",");
+
+    try {
+      const docRef = await addDoc(collection(db, "formulario"), {
+        nombre: formulario[0],
+        apellido: formulario[1],
+        telefono: formulario[2],
+        correo: formulario[3],
+        habInd: formulario[4],
+        habDob: formulario[5],
+        habTri: formulario[6],
+        habCua: formulario[7],
+        habSuite: formulario[8],
+        desayuno: formulario[9],
+        almuerzo: formulario[10],
+        cena: formulario[11],
+      });
+
+      documentos.push({ id: docRef.id, ...docRef.data() });
+
+      //setPersonas(documentos);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  ////////
+
   return (
     <Container maxW="container.xl">
-      <Center color="white" height="20vh">
-        <Heading size="lg" mb={3} margin-left="100px" marginBottom="7">
+      <Center color="white" height="10vh">
+        <Heading size="lg" mb={3} margin-left="100px" marginBottom="5">
           Bienvenido {localStorage.getItem("usuario")}
         </Heading>
       </Center>
       <Flex height="10vh" justifyContent="center" alignItems="center"></Flex>
-      <Flex height="55vh" justifyContent="center" alignItems="center">
-        <Box maxW="50vw" bg={backgroundColor} p={6} borderRadius="md">
+      <Flex height="45vh" justifyContent="center" alignItems="center">
+        <Box maxW="40vw" bg={backgroundColor} p={6} borderRadius="md">
           <form onSubmit={handleSubmit}>
             <FormControl>
               <VStack mt="8" spacing="5" variant="outline" justify="center">
@@ -280,7 +325,13 @@ export function AddForm({ addTodo }) {
             >
               <Link to="/inicio">Cancelar</Link>
             </Button>
-            <Button margin="2" colorScheme="blue" px="2" type="submit">
+            <Button
+              margin="2"
+              colorScheme="blue"
+              px="2"
+              type="submit"
+              onClick={crearRegistro}
+            >
               Registrar
             </Button>
           </form>

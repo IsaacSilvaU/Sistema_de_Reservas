@@ -6,12 +6,65 @@ body {
     #2f3f80,
     #161569,
     #5a4894,
-    #a950a1,
-    #ff7cae
+    #a99150,
+    #ffc400
   );
   background-size: 500%;
   animation: fondo_animado 10s infinite;
 }
+
+html {
+  background-image: linear-gradient(
+    135deg,
+    #00b7d4,
+    #505488,
+    #2f3f80,
+    #161569,
+    #5a4894,
+    #a99150,
+    #ffc400
+  );
+  background-size: 500%;
+  animation: fondo_animado 10s infinite;
+}
+
+div .css-h94677 {
+  background-image: linear-gradient(
+    135deg,
+    #00b7d4,
+    #505488,
+    #2f3f80,
+    #161569,
+    #5a4894,
+    #a99150,
+    #ffc400
+  );
+  background-size: 500%;
+  animation: fondo_animado 10s infinite;
+}
+
+div .css-1qwy4cs {
+  background-image: linear-gradient(
+    135deg,
+    #00b7d4,
+    #505488,
+    #2f3f80,
+    #161569,
+    #5a4894,
+    #a99150,
+    #ffc400
+  );
+  background-size: 500%;
+  animation: fondo_animado 10s infinite;
+}
+
+div .css-1ocidfa{
+  display: grid;
+  grid-template-columns: 10fr 1fr 1fr;
+  width: 100%;
+}
+
+
 
 @keyframes fondo_animado {
   0% {

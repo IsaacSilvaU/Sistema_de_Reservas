@@ -1,9 +1,6 @@
-import {
-  Box,
-  Center,
-  Image,
-  Heading,
-} from "@chakra-ui/react";
+import { Box, Center, Image, Heading } from "@chakra-ui/react";
+import Persona from "./dbpersona";
+import Listado from "./dblistado";
 
 //import Listado from "./components/listado";
 
@@ -15,10 +12,18 @@ export function Inicio() {
           Bienvenidos al Hotel Ada Suite
         </Heading>
       </Center>
-      <Box boxSize="sm" width="40vw" padding-left="100vw">
-        <Image justifyContent="Center" src="./ada2.png" alt="Logo Adad Suite" />
-        {/* <Listado /> */}
-      </Box>
+      <Center>
+        <Box boxSize="sm" width="40vw">
+          <div>
+            <Image
+              justifyContent="Center"
+              src="./ada.png"
+              alt="Logo Adad Suite"
+            />
+          </div>
+        </Box>
+      </Center>
+      {/* <Listado /> */}
     </Box>
   );
 }

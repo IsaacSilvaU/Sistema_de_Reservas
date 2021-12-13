@@ -13,7 +13,8 @@ import { FaTrash } from "react-icons/fa";
 export function ListaDatos({ todos2, deleteTodo }) {
   if (!todos2.length) {
     return (
-      <Badge colorScheme="green" p="4" m="4" borderRadius="lg">
+      /* <Badge colorScheme="green" p="4" m="4" borderRadius="lg"> */
+      <Badge p="4" m="4" borderRadius="lg">
         No hay nada
       </Badge>
     );

@@ -16,7 +16,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
   Link,
 } from "react-router-dom";
 // Import the functions you need from the SDKs you ne
@@ -25,7 +24,6 @@ import { firebaseConfig } from "../firebaseConfig";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { useEffect } from "react";
 import { useUser } from "../providers/UserProvider";
-import { Formulario } from "./formulario";
 
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
@@ -162,6 +160,7 @@ export function AddTodo({ addTodo }) {
                     name="password"
                     variant="filled"
                     placeholder="Password"
+                    type="password"
                     value={content2}
                     onChange={(f) => setContent2(f.target.value)}
                   />
